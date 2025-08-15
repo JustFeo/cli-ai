@@ -1,6 +1,6 @@
 # cli-ai
 
-Terminal LLM Assistant using Gemini API with long-term memory, tools, and REPL.
+Terminal LLM Assistant using Gemini API with longterm memory, tools, and repl, created as a cli ai that knows stuff about you.
 
 ## Install (dev)
 ```bash
@@ -24,8 +24,8 @@ cli-ai ingest ./notes
 ```
 
 ## Security
-- Never embed API keys in code or git history; use env vars or `~/.config/cli-ai/config.yaml` (chmod 600).
-- Code execution tool is disabled by default and must be enabled explicitly in config.
+- Never embed API keys in code or git history (i have to say ts).
+- Code execution tool is disabled by default and must be enabled.
 
 ## License
-MIT 
+MIT standard
