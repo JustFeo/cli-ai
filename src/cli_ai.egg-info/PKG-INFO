@@ -1,0 +1,57 @@
+Metadata-Version: 2.4
+Name: cli-ai
+Version: 0.1.0
+Summary: Terminal LLM Assistant (Gemini) with memory, tools, and REPL
+Author: JustFeo
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: typer>=0.12
+Requires-Dist: rich>=13.7
+Requires-Dist: pydantic>=2.8
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: httpx>=0.27
+Requires-Dist: google-generativeai>=0.7.2
+Requires-Dist: chromadb>=0.5.5
+Requires-Dist: SQLAlchemy>=2.0
+Requires-Dist: simpleeval>=0.9.13
+Requires-Dist: duckduckgo-search>=6.1.7
+Requires-Dist: pypdf>=4.3.1
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+Requires-Dist: pytest-mock>=3.14; extra == "dev"
+Requires-Dist: black>=25.0; extra == "dev"
+Requires-Dist: isort>=6.0; extra == "dev"
+Requires-Dist: flake8>=7.0; extra == "dev"
+
+# cli-ai
+
+Terminal LLM Assistant using Gemini API with long-term memory, tools, and REPL.
+
+## Install (dev)
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e .[dev]
+```
+
+Export GEMINI_API_KEY in your shell (do NOT commit keys):
+```bash
+export GEMINI_API_KEY=...  # keep secret
+```
+
+## Usage
+```bash
+cli-ai                 # interactive REPL
+cli-ai -q "Explain eigenvalues like I'm 12"  # one-shot
+cli-ai remember "Met Anna at conference; likes ML" --tags personal,network
+cli-ai mem-search "Anna conference" --top 5
+cli-ai ingest ./notes
+```
+
+## Security
+- Never embed API keys in code or git history; use env vars or `~/.config/cli-ai/config.yaml` (chmod 600).
+- Code execution tool is disabled by default and must be enabled explicitly in config.
+
+## License
+MIT 

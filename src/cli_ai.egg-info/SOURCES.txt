@@ -1,0 +1,17 @@
+README.md
+pyproject.toml
+src/cli_ai/__init__.py
+src/cli_ai/api_client.py
+src/cli_ai/config.py
+src/cli_ai/main.py
+src/cli_ai/memory.py
+src/cli_ai/repl.py
+src/cli_ai/tools.py
+src/cli_ai/vectorstore.py
+src/cli_ai.egg-info/PKG-INFO
+src/cli_ai.egg-info/SOURCES.txt
+src/cli_ai.egg-info/dependency_links.txt
+src/cli_ai.egg-info/entry_points.txt
+src/cli_ai.egg-info/requires.txt
+src/cli_ai.egg-info/top_level.txt
+tests/test_api_client.py
