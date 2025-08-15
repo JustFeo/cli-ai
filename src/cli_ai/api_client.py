@@ -3,13 +3,15 @@ from __future__ import annotations
 from typing import Iterable, List, Optional
 import os
 import google.generativeai as genai
+from .config import load_config
 
 
 class ApiClient:
     def __init__(self, api_key: Optional[str] = None, model: str = "gemini-1.5-pro", embedding_model: str = "text-embedding-004"):
-        self.api_key = api_key or os.getenv("GEMINI_API_KEY")
+        cfg = load_config()
+        self.api_key = api_key or os.getenv("GEMINI_API_KEY") or cfg.get("api_key")
         if not self.api_key:
-            raise RuntimeError("GEMINI_API_KEY not set")
+            raise RuntimeError("GEMINI_API_KEY not set (env) and api_key missing in ~/.config/cli-ai/config.yaml")
         genai.configure(api_key=self.api_key)
         self.model_name = model
         self.embedding_model = embedding_model

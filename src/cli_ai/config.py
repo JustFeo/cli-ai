@@ -10,6 +10,7 @@ CONFIG_DIR = Path(os.getenv("XDG_CONFIG_HOME", Path.home() / ".config")) / "cli-
 CONFIG_PATH = CONFIG_DIR / "config.yaml"
 
 DEFAULT_CONFIG: Dict[str, Any] = {
+    "api_key": None,
     "model": "gemini-1.5-pro",
     "embedding_model": "text-embedding-004",
     "session_memory_n": 12,
