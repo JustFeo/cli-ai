@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.cache/
+.mypy_cache/
+.idea/
+*.egg-info/
+src/cli_ai.egg-info/
+**/.DS_Store
+**/vector/
+**/memories.sqlite 
