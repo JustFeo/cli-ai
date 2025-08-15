@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from typing import List, Dict, Any, Optional
-from dataclasses import dataclass
-from datetime import datetime
 import os
 import sqlite3
 import uuid
+from dataclasses import dataclass
+from datetime import datetime
+from typing import List, Optional
+
 from .vectorstore import VectorStore
 
 
@@ -61,7 +62,10 @@ class MemoryStore:
     def get(self, mem_id: str) -> Optional[MemoryRecord]:
         con = sqlite3.connect(self.db_path)
         cur = con.cursor()
-        cur.execute("SELECT id, text, source, created_at, last_used_at, tags, summary FROM memories WHERE id=?", (mem_id,))
+        cur.execute(
+            "SELECT id, text, source, created_at, last_used_at, tags, summary FROM memories WHERE id=?",
+            (mem_id,),
+        )
         row = cur.fetchone()
         con.close()
         if not row:
@@ -74,7 +78,10 @@ class MemoryStore:
         con = sqlite3.connect(self.db_path)
         cur = con.cursor()
         for h in hits:
-            cur.execute("SELECT id, text, source, created_at, last_used_at, tags, summary FROM memories WHERE id=?", (h["id"],))
+            cur.execute(
+                "SELECT id, text, source, created_at, last_used_at, tags, summary FROM memories WHERE id=?",
+                (h["id"],),
+            )
             row = cur.fetchone()
             if row:
                 out.append(MemoryRecord(*row))
@@ -87,4 +94,4 @@ class MemoryStore:
         cur.execute("DELETE FROM memories WHERE id=?", (mem_id,))
         con.commit()
         con.close()
-        self.vs.delete([mem_id]) 
+        self.vs.delete([mem_id])

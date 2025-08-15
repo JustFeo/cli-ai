@@ -4,6 +4,7 @@ import os
 import stat
 from pathlib import Path
 from typing import Any, Dict
+
 import yaml
 
 CONFIG_DIR = Path(os.getenv("XDG_CONFIG_HOME", Path.home() / ".config")) / "cli-ai"
@@ -38,4 +39,4 @@ def load_config() -> Dict[str, Any]:
     data = yaml.safe_load(CONFIG_PATH.read_text()) or {}
     cfg = DEFAULT_CONFIG.copy()
     cfg.update(data)
-    return cfg 
+    return cfg

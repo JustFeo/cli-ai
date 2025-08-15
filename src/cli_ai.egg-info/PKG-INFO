@@ -6,6 +6,7 @@ Author: JustFeo
 License: MIT
 Requires-Python: >=3.10
 Description-Content-Type: text/markdown
+License-File: LICENSE
 Requires-Dist: typer>=0.12
 Requires-Dist: rich>=13.7
 Requires-Dist: pydantic>=2.8
@@ -23,10 +24,11 @@ Requires-Dist: pytest-mock>=3.14; extra == "dev"
 Requires-Dist: black>=25.0; extra == "dev"
 Requires-Dist: isort>=6.0; extra == "dev"
 Requires-Dist: flake8>=7.0; extra == "dev"
+Dynamic: license-file
 
 # cli-ai
 
-Terminal LLM Assistant using Gemini API with long-term memory, tools, and REPL.
+Terminal LLM Assistant using Gemini API with longterm memory, tools, and repl, created as a cli ai that knows stuff about you.
 
 ## Install (dev)
 ```bash
@@ -50,8 +52,8 @@ cli-ai ingest ./notes
 ```
 
 ## Security
-- Never embed API keys in code or git history; use env vars or `~/.config/cli-ai/config.yaml` (chmod 600).
-- Code execution tool is disabled by default and must be enabled explicitly in config.
+- Never embed API keys in code or git history (i have to say ts).
+- Code execution tool is disabled by default and must be enabled.
 
 ## License
-MIT 
+MIT standard

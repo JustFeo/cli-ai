@@ -3,15 +3,18 @@ from __future__ import annotations
 import typer
 from rich.console import Console
 from rich.prompt import Prompt
-from .config import load_config, CONFIG_DIR
+
 from .api_client import ApiClient
+from .config import CONFIG_DIR, load_config
 from .memory import MemoryStore
 
 app = typer.Typer(add_completion=False)
 console = Console()
 
 
-def build_prompt(system: str, persona: str, memories: list[str], recent: list[str], user: str) -> str:
+def build_prompt(
+    system: str, persona: str, memories: list[str], recent: list[str], user: str
+) -> str:
     parts = [
         "SYSTEM:\n" + system,
         "PERSONA:\n" + persona,
@@ -32,7 +35,9 @@ def repl(q: str = typer.Option(None, "-q", help="One-shot query")):
     mem = MemoryStore(str(CONFIG_DIR / "memory"), embedding_fn=lambda texts: client.embed(texts))
 
     if q:
-        prompt = build_prompt("You are a helpful terminal assistant.", "Professional tone.", [], [], q)
+        prompt = build_prompt(
+            "You are a helpful terminal assistant.", "Professional tone.", [], [], q
+        )
         console.print(client.generate(prompt, stream=False))
         raise typer.Exit(0)
 
@@ -48,10 +53,17 @@ def repl(q: str = typer.Option(None, "-q", help="One-shot query")):
             continue
         # simplistic retrieval
         retrieved = [r.text for r in mem.search(user, top_k=cfg["retrieval_top_k"])]
-        prompt = build_prompt("You are a helpful terminal assistant.", "Professional tone.", retrieved, recent[-cfg["session_memory_n"] :], user)
+        prompt = build_prompt(
+            "You are a helpful terminal assistant.",
+            "Professional tone.",
+            retrieved,
+            recent[-cfg["session_memory_n"] :],
+            user,
+        )
         resp = client.generate(prompt, stream=False)
         console.print(f"[green]AI>[/green] {resp}")
         recent.append(f"User: {user}")
         recent.append(f"Assistant: {resp}")
 
-app = typer.Typer(callback=repl) 
+
+app = typer.Typer(callback=repl)

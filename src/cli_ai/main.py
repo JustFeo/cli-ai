@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import typer
+
 from .repl import repl as start_repl
 
 app = typer.Typer(add_completion=False)
@@ -14,4 +15,4 @@ def main():
 
 
 if __name__ == "__main__":
-    app() 
+    app()
